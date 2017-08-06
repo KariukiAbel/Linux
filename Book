@@ -3,3 +3,10 @@ login shell is, type the following commands:
 
 $whoami
 bobsira
+
+
+Although most Linux users have a preference for one shell or another, when you know how to
+use one shell, you can quickly learn any of the others by occasionally referring to the shell’s
+man page (for example, type man bash).
+
+The man pages provide documentation for commands, file formats, and other components in Linux.
