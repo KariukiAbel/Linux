@@ -180,3 +180,45 @@ any command being typed (the dot indicates that it is currently active). PID sho
 ID of the user’s login shell. COMMENT would show the name of the remote computer the user
 had logged in from, if that user had logged in from another computer on the network, or the
 name of the local X display if that user were using a Terminal window (such as :0.0).
+
+
+
+Locating commands
+Now that you have typed a few commands, you may wonder where those commands are
+located and how the shell fi nds the commands you type. To fi nd commands you type, the
+shell looks in what is referred to as your path. For commands that are not in your path, you
+can type the complete identity of the location of the command
+
+If you know the directory that contains the command you want to run, one way to run it
+is to type the full, or absolute, path to that command. For example, you run the date com-
+mand from the /bin directory by typing
+
+$ /bin/date
+
+
+Of course, this can be inconvenient, especially if the command resides in a directory with a
+long pathname. The better way is to have commands stored in well-known directories and
+then add those directories to your shell’s PATH environment variable. The path consists of
+a list of directories that are checked sequentially for the commands you enter. To see your
+current path, type the following:
+$ echo $PATH
+/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:↵
+/home/chris/bin
+
+The results show a common default path for a regular Linux user. Directories in the path
+list are separated by colons. Most user commands that come with Linux are stored in the
+/bin, /usr/bin, or /usr/local/bin directories. The /sbin and /usr/sbin directories
+contain administrative commands (some Linux systems don’t put those directories in regu-
+lar users’ paths). The last directory shown is the bin directory in the user’s home directory
+(/home/chris/bin).
+
+Unlike some other operating systems, Linux does not, by default, check the current direc-
+tory for an executable before searching the path. It immediately begins searching the path,
+and executables in the current directory are run only if they are in the PATH variable or
+you give their absolute (such as /home/chris/scriptx.sh) or relative (for example,
+./scriptx.sh) address.
+
+The path directory order is important. Directories are checked from left to right. So, in
+this example, if there is a command called foo located in both the /bin and /usr/bin
+directories, the one in /bin is executed. To have the other foo command run, you either
+type the full path to the command or change your PATH variable.
