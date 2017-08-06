@@ -10,3 +10,33 @@ use one shell, you can quickly learn any of the others by occasionally referring
 man page (for example, type man bash).
 
 The man pages provide documentation for commands, file formats, and other components in Linux.
+
+Running Commands
+The simplest way to run a command is to type the name of the command from a shell.
+
+$ date
+Sat Oct 19 08:04:00 EST 2014
+
+Typing the date command, with no options or arguments, causes the current day, month,
+date, time, time zone, and year to be displayed as just shown. Here are a few other com-
+mands you can try:
+
+$ pwd
+/home/chris
+$ hostname
+mydesktop
+$ ls
+Desktop
+Documents
+Downloads
+Music
+Pictures
+Public
+Templates
+Videos
+
+The pwd command shows your current working directory. Typing hostname shows your
+computer’s hostname. The ls command lists the fi les and directories in your current direc-
+tory. Although many commands can be run by just typing command names, it’s more com-
+mon to type more after the command to modify its behavior. The characters and words you
+can type after a command are called options and arguments.
