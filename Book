@@ -1,0 +1,5 @@
+In most Linux systems, your default shell is the bash shell. To fi nd out what your default
+login shell is, type the following commands:
+
+$whoami
+bobsira
