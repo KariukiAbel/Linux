@@ -144,3 +144,39 @@ The date command has some special types of options. By itself, date simply print
 current day, date, and time as shown above. But the date command supports a special +
 format option, which lets you display the date in different formats. Type date --help to
 see different format indicators you can use.
+
+
+When you log in to a Linux system, Linux views you as having a particular identity, which
+includes your username, group name, user ID, and group ID. Linux also keeps track of your
+login session: It knows when you logged in, how long you have been idle, and where you
+logged in from.
+
+To fi nd out information about your identity, use the id command as follows:
+
+$ id
+uid=501(chris) gid=501(chris) groups=105(sales), 7(lp)
+
+In this example, the username is chris, which is represented by the numeric user ID (uid)
+501. The primary group for chris also is called chris, which has a group ID (gid) of 501.
+It is normal for Fedora and Red Hat Enterprise Linux users to have the same primary group
+name as their username. The user chris also belongs to other groups called sales (gid
+105) and lp (gid 7). These names and numbers represent the permissions that chris has
+to access computer resources.
+
+
+You can see information about your current login session by using the who command. In
+the following example, the -u option says to add information about idle time and the
+process ID and -H asks that a header be printed:
+
+$ who -uH
+NAME	LINE	TIME		IDLE	PID	COMMENT
+chris	tty1	Jan 13 20:57	.	2013
+
+
+The output from this who command shows that the user chris is logged in on tty1 (which
+is the fi rst virtual console on the monitor connected to the computer), and his login session
+began at 20:57 on January 13. The IDLE time shows how long the shell has been open without
+any command being typed (the dot indicates that it is currently active). PID shows the process
+ID of the user’s login shell. COMMENT would show the name of the remote computer the user
+had logged in from, if that user had logged in from another computer on the network, or the
+name of the local X display if that user were using a Terminal window (such as :0.0).
