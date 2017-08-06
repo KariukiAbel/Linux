@@ -289,3 +289,7 @@ Notice that locate not only found the chage command, but also found the lchage
 command and a variety of man pages associated with chage for different languages. The
 locate command looks all over your fi lesystem, not just in directories that
 contain commands.
+
+Recalling Commands Using Command History
+The shell history is a list of the commands that you have entered before. Using the history
+command in a bash shell, you can view your previous commands.
