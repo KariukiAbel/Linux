@@ -40,3 +40,27 @@ computer’s hostname. The ls command lists the fi les and directories in your c
 tory. Although many commands can be run by just typing command names, it’s more com-
 mon to type more after the command to modify its behavior. The characters and words you
 can type after a command are called options and arguments.
+
+
+Understanding command syntax
+Most commands have one or more options you can add to change the command’s behavior.
+Options typically consist of a single letter, preceded by a hyphen. However, you can group
+single-letter options together or precede each with a hyphen, to use more than one option
+at a time. For example, the following two uses of options for the ls command are the same:
+
+$ ls -l -a -t
+$ ls -lat
+
+In both cases, the ls command is run with the -l (long listing), -a (show hidden dot
+fi les), and -t options (list by time).
+
+
+Some commands include options that are represented by a whole word. To tell a command
+to use a whole word as an option, you typically precede it with a double hyphen (--). For
+example, to use the help option on many commands, you enter --help on the command
+line. Without the double hyphen, the letters h, e, l, and p would be interpreted as separate
+options. (There are some commands that don’t follow the double hyphen convention, using
+a single hyphen before a word, but most commands use double hyphens for word options.)
+
+Note: You can use the --help option with most commands to see the options and arguments that they support: for exam-
+ple, try typing hostname --help.
