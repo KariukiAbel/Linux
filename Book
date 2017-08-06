@@ -64,3 +64,27 @@ a single hyphen before a word, but most commands use double hyphens for word opt
 
 Note: You can use the --help option with most commands to see the options and arguments that they support: for exam-
 ple, try typing hostname --help.
+
+
+Sometimes, an argument is associated with an option. In that case, the argument must immedi-
+ately follow the option. With single-letter options, the argument typically follows after a space.
+For full-word options, the argument often follows an equal sign (=). Here are some examples:
+
+$ ls --hide=Desktop
+Documents Music
+Downloads Pictures
+Public
+Videos
+Templates
+
+In the previous example, the --hide option tells the ls command to not display the fi le or
+directory named Desktop when listing the contents of the directory. Notice that the equal
+sign immediately follows the option (no space) and then the argument (again, no space).
+
+Here’s an example of a single-letter option that is followed by an argument:
+$ tar -cvf backup.tar /home/chris
+
+In the tar example just shown, the options say to create (c) a fi le (f) named backup.tar
+that includes all the contents of the /home/chris directory and its subdirectories and
+show verbose messages as the backup is created (v). Because backup.tar is an argument
+to the f option, backup.tar must immediately follow the option.
