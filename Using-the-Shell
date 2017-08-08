@@ -334,3 +334,14 @@ ALT+U		Uppercase word		Change the current word to uppercase.
 ALT+L		Lowercase word		Change the current word to lowercase.
 ALT+C		Capitalize word		Change the current word to an initial capital.
 CTRL+V		Insert special character Add a special character.e.g, to add a Tab character,press Ctrl+V+Tab
+
+
+Keystrokes for Cutting and Pasting Text from within Command Lines
+Keystroke	Full Name		Meaning
+Ctrl+K		Cut end of line		Cut text to the end of the line
+Ctrl+U		Cut beginning of line	Cut text to the beginning of the line
+Ctrl+W		Cut previous word	Cut the word located behind the cursor
+Alt+D		Cut next word		Cut the word following the cursor
+Ctrl+Y		Paste recent text	Paste most recently cut text
+ALT+Y		Paste earlier text	Rotate back to previously cut text and paste it 
+Ctrl+C		Delete whole line	Delete the entire line.
