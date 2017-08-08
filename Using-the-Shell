@@ -322,3 +322,15 @@ ALT+B		Word backward		Go backward one word
 CTRL+A		Beginnning of line	Go to the beginning of the current word
 CTRL+E		End of line		Go to the end of the line
 CTRL+L		Clear screen		Clear screen and leave line at the top of the screen
+
+
+Keystrokes for Editing Command Lines
+Keystroke	Full Name 		Meaning
+CTRL+D		Delete current		Delete the current character
+Backspace	Delete previous		Delete the previous character
+CTRL+T		Transpose character	Switch positions of the current and previous characters.
+ALT+T		Transpose words		Switch positions of the current and previous words.
+ALT+U		Uppercase word		Change the current word to uppercase.
+ALT+L		Lowercase word		Change the current word to lowercase.
+ALT+C		Capitalize word		Change the current word to an initial capital.
+CTRL+V		Insert special character Add a special character.e.g, to add a Tab character,press Ctrl+V+Tab
