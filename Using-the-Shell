@@ -440,3 +440,12 @@ you are an administrative user with root privileges, you may want to consider em
 for the same reasons. Also, because shell history is stored permanently when the shell exits properly, you can prevent
 storing a shell’s history by killing a shell. For example, to kill a shell with process ID 1234, type kill -9 1234
 from any shell.
+
+Connecting and Expanding Commands
+
+A truly powerful feature of the shell is the capability to redirect the input and output
+of commands to and from other commands and files. To allow commands to be strung
+together, the shell uses metacharacters. A metacharacter is a typed character that has
+special meaning to the shell for connecting commands or requesting expansion.
+Metacharacters include the pipe character (|), ampersand (&), semicolon (;), right paren-
+thesis ( ) ), left parenthesis ( ( ), less than sign (<), and greater than sign (>).
