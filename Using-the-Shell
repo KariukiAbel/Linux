@@ -345,3 +345,20 @@ Alt+D		Cut next word		Cut the word following the cursor
 Ctrl+Y		Paste recent text	Paste most recently cut text
 ALT+Y		Paste earlier text	Rotate back to previously cut text and paste it 
 Ctrl+C		Delete whole line	Delete the entire line.
+
+
+Command-line completion
+To save you a few keystrokes, the bash shell offers several different ways of completing
+partially typed values. To attempt to complete a value, type the fi rst few characters and
+press Tab. Here are some of the values you can type partially from a bash shell:
+
+■ Command, alias, or function—If the text you type begins with regular
+characters, the shell tries to complete the text with a command, alias, or
+function name.
+■ Variable—If the text you type begins with a dollar sign ($), the shell completes
+the text with a variable from the current shell.
+■ Username—If the text you type begins with a tilde (~), the shell completes the
+text with a username. As a result, ~username indicates the home directory of the
+named user.
+■ Hostname—If the text you type begins with the at symbol (@), the shell completes
+the text with a hostname taken from the /etc/hosts file.
