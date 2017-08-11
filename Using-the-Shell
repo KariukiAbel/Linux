@@ -406,3 +406,37 @@ that contains a particular string of characters. For example, you can run the da
 command again by just searching for part of that command line as follows:
 $ !?dat?
 dateWed Oct 29 21:32:41 PDT 2014
+
+Key Strokes for Using Command History
+
+Key(s)		Function Name		Description
+Arrow keys	Step			Press the up and down arrow keys to step through each
+					command line in your history list to arrive at the one you want.
+					(Ctrl+P and Ctrl+N do the same functions,respectively.)
+Ctrl+R		Reverse incremental	After you press these keys, you enter a search string to do a
+		search			reverse search.As you type the string, a matching command line
+					appears that you can run or edit.
+Ctrl+S		Forward incremental	This is the same as the preceding function but for forward search.(may not work)
+		search
+Alt+P		Reverse search		After you press these keys, you enter a string to do a reverse search.Type a 
+					string and press Enter to see the most recent command line that includes that
+					string.
+Alt+N		Forward search		This is the same as the preceding function but for forward search.(It may not 
+					work in all instances.)
+
+Another way to work with your history list is to use the fc command. Type fc followed
+by a history line number, and that command line is opened in a text editor (vi by default;
+type :wq to save and exit or :q! to just exit if you are stuck in vi). Make the changes that
+you want. When you exit the editor, the command runs. You can also give a range of line
+numbers (for example, fc 100 105). All the commands open in your text editor, and then
+run one after the other when you exit the editor.
+After you close your shell, the history list is stored in the .bash_history fi le in your
+home directory. Up to 1,000 history commands are stored for you by default.
+
+NOTE
+Some people disable the history feature for the root user by setting the HISTFILE to /dev/null or simply leav-
+ing HISTSIZE blank. This prevents information about the root user’s activities from potentially being exploited. If
+you are an administrative user with root privileges, you may want to consider emptying your fi le upon exiting as well
+for the same reasons. Also, because shell history is stored permanently when the shell exits properly, you can prevent
+storing a shell’s history by killing a shell. For example, to kill a shell with process ID 1234, type kill -9 1234
+from any shell.
