@@ -640,3 +640,19 @@ TMOUT 			This can be set to a number representing the number of seconds the shel
 			reached, the shell exits. This security feature makes it less likely for
 			unattended shells to be accessed by unauthorized people. (This must be
 			set in the login shell for it to actually cause the shell to log out the user.)
+
+Creating and using aliases
+Using the alias command, you can effectively create a shortcut to any command and
+options you want to run later. You can add and list aliases with the alias command.
+Consider the following examples of using alias from a bash shell:
+$ alias p='pwd ; ls –CF'
+$ alias rm='rm -i'
+In the fi rst example, the letter p is assigned to run the command pwd, and then to run ls
+-CF to print the current working directory and list its contents in column form. The
+second example runs the rm command with the -i option each time you type rm. (This is
+an alias that is often set automatically for the root user. Instead of just removing fi les, you
+are prompted for each individual fi le removal. This prevents you from automatically remov-
+ing all the fi les in a directory by mistakenly typing something such as rm *.)
+While you are in the shell, you can check which aliases are set by typing the alias com-
+mand. If you want to remove an alias, type unalias. (Remember that if the alias is set
+in a confi guration fi le, it will be set again when you open another shell.).
