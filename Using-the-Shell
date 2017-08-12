@@ -496,3 +496,38 @@ the following to the end of a command line.
 ; mail -s "Finished the long command" chris@example.com
 Then, for example, a mail message is sent to the user you choose after the command
 completes.
+
+Background commands
+
+Some commands can take a while to complete. Sometimes, you may not want to tie up your
+shell waiting for a command to fi nish. In those cases, you can have the commands run in
+the background by using the ampersand (&).
+Text formatting commands (such as nroff and troff, described earlier) are examples
+of commands that are often run in the background to format a large document. You also
+might want to create your own shell scripts that run in the background to check con-
+tinuously for certain events to occur, such as the hard disk fi lling up or particular users
+logging in.
+
+The following is an example of a command being run in the background:
+$ troff -me verylargedocument | lpr &
+Don’t close the shell until the process is completed, or that kills the process.
+
+Expanding commands
+
+With command substitution, you can have the output of a command interpreted by the
+shell instead of by the command itself. In this way, you can have the standard output of a
+command become an argument for another command. The two forms of command substitu-
+tion are $(command) and `command` (backticks, not single quotes).
+The command in this case can include options, metacharacters, and arguments. The follow-
+ing is an example of using command substitution:
+$ vi $(find /home | grep xyzzy)
+In this example, the command substitution is done before the vi command is run. First,
+the find command starts at the /home directory and prints out all fi les and directories
+below that point in the fi lesystem. The output is piped to the grep command, which fi lters
+out all fi les except for those that include the string xyzzy in the fi lename. Finally, the vi
+command opens all fi lenames for editing (one at a time) that include xyzzy. (If you run
+this and are not familiar with vi, you can type :q! to exit the fi le.)
+This particular example is useful if you want to edit a fi le for which you know the name but
+not the location. As long as the string is uncommon, you can fi nd and open every instance
+of a fi lename existing beneath a point you choose in the fi lesystem. (In other words, don’t
+use grep from the root fi lesystem or you’ll match and try to edit several thousand fi les.)
