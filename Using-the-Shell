@@ -530,4 +530,21 @@ this and are not familiar with vi, you can type :q! to exit the fi le.)
 This particular example is useful if you want to edit a fi le for which you know the name but
 not the location. As long as the string is uncommon, you can fi nd and open every instance
 of a fi lename existing beneath a point you choose in the fi lesystem. (In other words, don’t
-use grep from the root fi lesystem or you’ll match and try to edit several thousand fi les.)
+use grep from the root fi lesystem or you’ll match and try to edit several thousand files.)
+
+Expanding arithmetic expressions
+
+Sometimes, you want to pass arithmetic results to a command. There are two forms you
+can use to expand an arithmetic expression and pass it to the shell: $[expression] or
+$(expression). The following is an example:
+$ echo "I am $[2015 - 1957] years old."
+I am 58 years old.
+The shell interprets the arithmetic expression fi rst (2015 - 1957) and then passes that
+information to the echo command. The echo command displays the text, with the results
+of the arithmetic (58) inserted.
+Here’s an example of the other form:
+$ echo "There are $(ls | wc -w) files in this directory."
+There are 14 files in this directory.
+This lists the contents of the current directory (ls) and runs the word count command to
+count the number of fi les found (wc -w). The resulting number (14, in this case) is echoed
+back with the rest of the sentence shown.
