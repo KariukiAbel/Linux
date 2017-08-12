@@ -665,3 +665,14 @@ returns you to a login prompt.
 If you have multiple shells open from the same shell session, exiting a shell simply returns
 you to the shell that launched the current shell. For example, the su command opens a
 shell as a new user. Exiting from that shell simply returns you to the original shell.
+
+Creating Your Shell Environment
+You can tune your shell to help you work more effi ciently. You can set aliases to create
+shortcuts to your favorite command lines and environment variables to store bits of infor-
+mation. By adding those settings to shell confi guration fi les, you can have the settings
+available every time you open a shell.
+
+Confi guring your shell
+Several confi guration files support how your shell behaves. Some of the fi les are executed
+for every user and every shell, whereas others are specific to the user who creates the con-
+fi guration file.
