@@ -714,3 +714,54 @@ The following sections provide ideas about items to add to your shell confi gura
 most cases, you add these values to the .bashrc fi le in your home directory. However, if
 you administer a system, you may want to set some of these values as defaults for all your
 Linux system’s users.
+
+Setting your prompt
+Your prompt consists of a set of characters that appear each time the shell is ready to
+accept a command. The PS1 environment variable sets what the prompt contains and is
+what you interact with most of the time. If your shell requires additional input, it uses the
+values of PS2, PS3, and PS4.
+
+When your Linux system is installed, often a prompt is set to contain more than just a
+dollar sign or pound sign. For example, in Fedora or Red Hat Enterprise Linux, your prompt
+is set to include the following information: your username, your hostname, and the base
+name of your current working directory. That information is surrounded by brackets and
+followed by a dollar sign (for regular users) or a pound sign (for the root user). The follow-
+ing is an example of that prompt:
+[chris@myhost bin]$
+
+If you change directories, the bin name would change to the name of the new directory.
+Likewise, if you were to log in as a different user or to a different host, that information
+would change.
+You can use several special characters (indicated by adding a backslash to a variety of
+letters) to include different information in your prompt. Special characters can be used to
+output your terminal number, the date, and the time, as well as other pieces of informa-tion.
+
+N/B
+If you are setting your prompt temporarily by typing at the shell, you should put the value of PS1 in quotes. For example,
+you could type export PS1="[\t \w]\$ " to see a prompt that looks like this: [20:26:32 /var/spool]$.
+
+Characters to Add Information to bash Prompt
+\! This shows the current command history number. This includes all previous commands stored for your username.
+\# This shows the command number of the current command. This includes only thecommands for the active shell.
+\$ This shows the user prompt ($) or root prompt (#), depending on which user you are.
+\W This shows only the current working directory base name. For example, if the current working directory was /var/spool/mail, 
+   this value simply appears as mail.
+\[ This precedes a sequence of nonprinting characters. This can be used to add a terminal control sequence into the prompt for
+   such things as changing colors, adding blink effects, or making characters bold. (Your terminal determines the exact
+   sequences available.)
+\] This follows a sequence of nonprinting characters.
+\\ This shows a backslash.
+\d This displays the day name, month, and day number of the current date—for example, Sat Jan 23.
+\h This shows the hostname of the computer running the shell.
+\n This causes a newline to occur.
+\nnn This shows the character that relates to the octal number replacing nnn.
+\s This displays the current shell name. For the bash shell, the value would be bash.
+\t This prints the current time in hours, minutes, and seconds—for example, 10:14:39.
+\u This prints your current username.
+\w This displays the full path to the current working directory.
+
+To make a change to your prompt permanent, add the value of PS1 to your .bashrc fi le
+in your home directory (assuming that you are using the bash shell). There may already be
+a PS1 value in that fi le that you can modify. Refer to the Bash Prompt HOWTO (http://
+www.tldp.org/HOWTO/Bash-Prompt-HOWTO) for information on changing colors, com-
+mands, and other features of your bash shell prompt.
