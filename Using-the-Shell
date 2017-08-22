@@ -837,3 +837,52 @@ information can be found there than on a man page
 Use the man command. To learn more about a particular command, type man
 command. (Replace command with the command name you want.) A description of
 the command and its options appears on the screen
+
+Manual Page Sections
+Man pages are the most common means of getting information about commands, as well as
+other basic components of a Linux system. Each man page falls into one of the categories
+listed in Table 3.8. As a regular user, you will be most interested in man pages in section 1.
+As a system administrator, you will also be interested in sections 5 and 8, and occasionally
+section 4. Programmers will be interested in section 2 and 3 man pages.
+
+Section
+Number    Section Name     		Description
+1	  User Commands			Commands that can be run from the shell by a regular user
+				        (typically no administrative privilege is needed)
+2	 System Calls			Programming functions used within an application to make calls
+					to the kernel
+3	 C Library Functions		Programming functions that provide interface to specific
+					programming libaries (such as those for certain graphical
+					interfaces or other libraries that operate in user space)
+4	 Device and Special Files	Filesystem nodes that represent hardware devices(such as 
+					terminals or CD drivers) or software devices(such as random
+					number generators)
+5	 File Formats and Convetions	Types of files(such as a graphic or word processing file) or
+					specific configuration files (such as the passwd or group file)
+6	 Games 				Games available on the system
+7	 Miscellaneous			Overviews of topics such as protocols, filenames, character set
+					standards, and o on
+8	 System Administration		Commands that require root or other adminstrative priviledges
+	 Tools and Daemons		to use
+
+Options to the man command enable you to search the man page database or display man
+pages on the screen. Here are some examples of man commands and options:
+
+$ man -k passwd
+...
+passwd			(1)  -update user's authetication tokens
+passwd			(5)  -password file
+$man passwd
+$man 5 passwd
+
+Using the -k option, you can search the name and summary sections of all man pages
+installed on the system. About a dozen man pages include “passwd” in the name or
+description of a command. Let’s say that the two man pages I am interested in are the
+passwd command (in section 1 of the man pages) and the passwd fi le (in section 5) man
+pages. Because just typing man passwd displays the section 1 page, I need to explicitly
+request the section 5 man page if I want to see that instead (man 5 passwd).
+While you are displaying a man page, you can view different parts of the fi le using Page
+Down and Page Up keys (to move a page at a time). Use the Enter key or up and down
+arrows to move a line at a time. Press the forward slash (/) and type a term to search the
+document for that term. Press n to repeat the search forward or N to repeat the search
+backward. To quit the man page, type q.
