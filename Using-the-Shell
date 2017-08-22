@@ -802,3 +802,38 @@ people may be used to if they have used DOS). However, the security risk with th
 directory that contains a command that you don’t intend to run from that directory. For example, a malicious person
 could put an ls command in a directory that, instead of listing the content of your directory, does something devi-
 ous. Because of this, the practice of adding the dot to your path is highly discouraged.
+
+Getting Information about Commands
+
+When you first start using the shell, it can be intimidating. All you see is a prompt. How do
+you know which commands are available, which options they use, or how to use advanced
+features? Fortunately, lots of help is available. Here are some places you can look to supple-
+ment what you learn in this chapter:
+
+Check the PATH. Type echo $PATH. You see a list of the directories containing
+commands that are immediately accessible to you. Listing the contents of those
+directories displays most standard Linux commands. For example:
+$ ls /bin
+
+Use the help command. Some commands are built into the shell, so they do
+not appear in a directory. The help command lists those commands and shows
+options available with each of them. (Type help | less to page through the
+list.) For help with a particular built-in command, type help command, replacing
+command with the name that interests you. The help command works with the
+bash shell only.
+
+Use --help with the command. Many commands include a --help option that
+you can use to get information about how the command is used. For example, if
+you type date --help | less, the output shows not only options, but also time
+formats you can use with the date command. Other commands simply use a –h
+option, like fdisk -h.
+
+Use the info command. The info command is another tool for displaying infor-
+mation about commands from the shell. The info command can move among a
+hierarchy of nodes to fi nd information about commands and other items. Not all
+commands have information available in the info database, but sometimes more
+information can be found there than on a man page
+
+Use the man command. To learn more about a particular command, type man
+command. (Replace command with the command name you want.) A description of
+the command and its options appears on the screen
