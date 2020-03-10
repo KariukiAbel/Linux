@@ -1,0 +1,888 @@
+In most Linux systems, your default shell is the bash shell. To fi nd out what your default
+login shell is, type the following commands:
+
+$whoami
+bobsira
+
+
+Although most Linux users have a preference for one shell or another, when you know how to
+use one shell, you can quickly learn any of the others by occasionally referring to the shell’s
+man page (for example, type man bash).
+
+The man pages provide documentation for commands, file formats, and other components in Linux.
+
+Running Commands
+The simplest way to run a command is to type the name of the command from a shell.
+
+$ date
+Sat Oct 19 08:04:00 EST 2014
+
+Typing the date command, with no options or arguments, causes the current day, month,
+date, time, time zone, and year to be displayed as just shown. Here are a few other com-
+mands you can try:
+
+$ pwd
+/home/chris
+$ hostname
+mydesktop
+$ ls
+Desktop
+Documents
+Downloads
+Music
+Pictures
+Public
+Templates
+Videos
+
+The pwd command shows your current working directory. Typing hostname shows your
+computer’s hostname. The ls command lists the fi les and directories in your current direc-
+tory. Although many commands can be run by just typing command names, it’s more com-
+mon to type more after the command to modify its behavior. The characters and words you
+can type after a command are called options and arguments.
+
+
+Understanding command syntax
+Most commands have one or more options you can add to change the command’s behavior.
+Options typically consist of a single letter, preceded by a hyphen. However, you can group
+single-letter options together or precede each with a hyphen, to use more than one option
+at a time. For example, the following two uses of options for the ls command are the same:
+
+$ ls -l -a -t
+$ ls -lat
+
+In both cases, the ls command is run with the -l (long listing), -a (show hidden dot
+fi les), and -t options (list by time).
+
+
+Some commands include options that are represented by a whole word. To tell a command
+to use a whole word as an option, you typically precede it with a double hyphen (--). For
+example, to use the help option on many commands, you enter --help on the command
+line. Without the double hyphen, the letters h, e, l, and p would be interpreted as separate
+options. (There are some commands that don’t follow the double hyphen convention, using
+a single hyphen before a word, but most commands use double hyphens for word options.)
+
+Note: You can use the --help option with most commands to see the options and arguments that they support: for exam-
+ple, try typing hostname --help.
+
+
+Sometimes, an argument is associated with an option. In that case, the argument must immedi-
+ately follow the option. With single-letter options, the argument typically follows after a space.
+For full-word options, the argument often follows an equal sign (=). Here are some examples:
+
+$ ls --hide=Desktop
+Documents Music
+Downloads Pictures
+Public
+Videos
+Templates
+
+In the previous example, the --hide option tells the ls command to not display the fi le or
+directory named Desktop when listing the contents of the directory. Notice that the equal
+sign immediately follows the option (no space) and then the argument (again, no space).
+
+Here’s an example of a single-letter option that is followed by an argument:
+$ tar -cvf backup.tar /home/chris
+
+In the tar example just shown, the options say to create (c) a fi le (f) named backup.tar
+that includes all the contents of the /home/chris directory and its subdirectories and
+show verbose messages as the backup is created (v). Because backup.tar is an argument
+to the f option, backup.tar must immediately follow the option.
+
+Here are a few commands you can try out. See how they behave differently with
+different options:
+
+$ ls
+Desktop Documents Downloads Music Pictures Public Templates
+Videos
+
+$ ls -a
+.
+Desktop
+.gnome2_private .lesshst
+Public
+..
+Documents
+.gnote
+.local
+Templates
+.bash_history Downloads
+.gnupg
+.mozilla
+Videos
+.bash_logout
+.emacs
+.gstreamer-0.10 Music
+.xsession-errors
+.bash_profile .esd_auth
+.gtk-bookmarks
+Pictures
+.zshrc
+.bashrc
+.fsync.log .gvfs
+Pictures
+
+
+$ uname
+Linux
+$ uname -a
+Linux unused 3.10.0-121.el7.x86_64 #1 SMP Tue Oct 21 10:48:19
+EDT 2014 x86_64 x86_64 x86_64 GNU/Linux
+$ date
+Tue Oct 21 09:08:38 EST 2014
+$ date +'%d/%m/%y'
+10/21/14
+$ date +'%A, %B %d, %Y'
+Tuesday, October 21, 2014
+
+The ls command, by itself, shows all regular fi les and directories in the current directory.
+By adding the -a, you can also see the hidden fi les in the directory (those beginning with
+a dot). The uname command shows the type of system you are running (Linux). When you
+add -a, you also can see the hostname, kernel release, and kernel version.
+
+The date command has some special types of options. By itself, date simply prints the
+current day, date, and time as shown above. But the date command supports a special +
+format option, which lets you display the date in different formats. Type date --help to
+see different format indicators you can use.
+
+
+When you log in to a Linux system, Linux views you as having a particular identity, which
+includes your username, group name, user ID, and group ID. Linux also keeps track of your
+login session: It knows when you logged in, how long you have been idle, and where you
+logged in from.
+
+To fi nd out information about your identity, use the id command as follows:
+
+$ id
+uid=501(chris) gid=501(chris) groups=105(sales), 7(lp)
+
+In this example, the username is chris, which is represented by the numeric user ID (uid)
+501. The primary group for chris also is called chris, which has a group ID (gid) of 501.
+It is normal for Fedora and Red Hat Enterprise Linux users to have the same primary group
+name as their username. The user chris also belongs to other groups called sales (gid
+105) and lp (gid 7). These names and numbers represent the permissions that chris has
+to access computer resources.
+
+
+You can see information about your current login session by using the who command. In
+the following example, the -u option says to add information about idle time and the
+process ID and -H asks that a header be printed:
+
+$ who -uH
+NAME	LINE	TIME		IDLE	PID	COMMENT
+chris	tty1	Jan 13 20:57	.	2013
+
+
+The output from this who command shows that the user chris is logged in on tty1 (which
+is the fi rst virtual console on the monitor connected to the computer), and his login session
+began at 20:57 on January 13. The IDLE time shows how long the shell has been open without
+any command being typed (the dot indicates that it is currently active). PID shows the process
+ID of the user’s login shell. COMMENT would show the name of the remote computer the user
+had logged in from, if that user had logged in from another computer on the network, or the
+name of the local X display if that user were using a Terminal window (such as :0.0).
+
+
+
+Locating commands
+Now that you have typed a few commands, you may wonder where those commands are
+located and how the shell fi nds the commands you type. To fi nd commands you type, the
+shell looks in what is referred to as your path. For commands that are not in your path, you
+can type the complete identity of the location of the command
+
+If you know the directory that contains the command you want to run, one way to run it
+is to type the full, or absolute, path to that command. For example, you run the date com-
+mand from the /bin directory by typing
+
+$ /bin/date
+
+
+Of course, this can be inconvenient, especially if the command resides in a directory with a
+long pathname. The better way is to have commands stored in well-known directories and
+then add those directories to your shell’s PATH environment variable. The path consists of
+a list of directories that are checked sequentially for the commands you enter. To see your
+current path, type the following:
+$ echo $PATH
+/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:↵
+/home/chris/bin
+
+The results show a common default path for a regular Linux user. Directories in the path
+list are separated by colons. Most user commands that come with Linux are stored in the
+/bin, /usr/bin, or /usr/local/bin directories. The /sbin and /usr/sbin directories
+contain administrative commands (some Linux systems don’t put those directories in regu-
+lar users’ paths). The last directory shown is the bin directory in the user’s home directory
+(/home/chris/bin).
+
+Unlike some other operating systems, Linux does not, by default, check the current direc-
+tory for an executable before searching the path. It immediately begins searching the path,
+and executables in the current directory are run only if they are in the PATH variable or
+you give their absolute (such as /home/chris/scriptx.sh) or relative (for example,
+./scriptx.sh) address.
+
+The path directory order is important. Directories are checked from left to right. So, in
+this example, if there is a command called foo located in both the /bin and /usr/bin
+directories, the one in /bin is executed. To have the other foo command run, you either
+type the full path to the command or change your PATH variable
+
+
+
+Not all the commands you run are located in directories in your PATH variable. Some com-
+mands are built into the shell. Other commands can be overridden by creating aliases that
+defi ne any commands and options that you want the command to run. There are also ways
+of defi ning a function that consists of a stored series of commands. Here is the order in
+which the shell checks for the commands you type:
+
+1. Aliases. Names set by the alias command that represent a particular command
+and a set of options. Type alias to see what aliases are set. Often, aliases enable
+you to defi ne a short name for a long, complicated command.
+
+2. Shell reserved word. Words reserved by the shell for special use. Many of these
+are words that you would use in programming-type functions, such as do, while,
+case, and else.
+
+3. Function. This is a set of commands that are executed together within the
+current shell.
+
+4. Built-in command. This is a command built into the shell. As a result, there
+is no representation of the command in the fi lesystem. Some of the most com-
+mon commands you will use are shell built-in commands,such as cd(to change directories),
+echo(to output text to the screen),exit(to exit from a shell),fg(to bring a command 
+running in the background to the foreground),history(to see a list of commands that
+were previously run),pwd(to list the present working directory),set(to set shell options),
+and type(to show the location of a command).
+
+5. Filesystem command. This command is stored in and executed from the computer’s
+fi lesystem. (These are the commands that are indicated by the value of the PATH
+variable.)
+
+
+To find out where a particular command is taken from, you can use the type command.
+For example,
+to find out where the bash shell command is located, type the following:
+
+$ type bash
+bash is /bin/bash
+
+
+If a command resides in several locations, you can add the -a option to
+have all the known locations of the command printed. For example, the command type -a
+ls should show an aliased and fi lesystem location for the ls command
+
+If a command is not in your PATH variable, you can use the locate command to try to fi nd
+it. Using locate, you can search any part of the system that is accessible to you (some
+fi les are only accessible to the root user). For example, if you wanted to fi nd the location of
+the chage command, you could type the following:
+
+$ locate chage
+/usr/bin/chage
+/usr/sbin/lchage
+/usr/share/man/fr/man1/chage.1.gz
+/usr/share/man/it/man1/chage.1.gz
+/usr/share/man/ja/man1/chage.1.gz
+/usr/share/man/man1/chage.1.gz
+/usr/share/man/man1/lchage.1.gz
+/usr/share/man/pl/man1/chage.1.gz
+/usr/share/man/ru/man1/chage.1.gz
+/usr/share/man/sv/man1/chage.1.gz
+/usr/share/man/tr/man1/chage.1.gz.
+
+Notice that locate not only found the chage command, but also found the lchage
+command and a variety of man pages associated with chage for different languages. The
+locate command looks all over your fi lesystem, not just in directories that
+contain commands.
+
+Recalling Commands Using Command History
+The shell history is a list of the commands that you have entered before. Using the history
+command in a bash shell, you can view your previous commands.
+
+Command-line editing
+
+$ ls /usr/bin | sort -f | less
+
+This command lists the contents of the /usr/bin directory, sorts the contents in alphabeti-
+cal order (regardless of case), and pipes the output to less. The less command displays the
+fi rst page of output, after which you can go through the rest of the output a line (press Enter)
+or a page (press spacebar) at a time. Simply press q when you are fi nished. Now, suppose you
+want to change /usr/bin to /bin. You can use the following steps to change the command:
+
+1. Press the up arrow (↑) key. This displays the most recent command from your
+shell history.
+2. Press Ctrl+A. This moves the cursor to the beginning of the command line.
+3. Press Ctrl+F or the right arrow (→) key. Repeat this command a few times to
+position the cursor under the fi rst slash (/).
+4. Press Ctrl+D. Type this command four times to delete /usr from the line.
+5. Press Enter. This executes the command line.
+
+
+Keystrokes for Navigating Command Lines
+Keystroke 	Full Name 		Meaning
+CTRL+F		Character forward	Go forward one character
+CTRL+B		Character backward	Go backward one character
+ALT+F		Word forward		Go forward one word
+ALT+B		Word backward		Go backward one word
+CTRL+A		Beginnning of line	Go to the beginning of the current word
+CTRL+E		End of line		Go to the end of the line
+CTRL+L		Clear screen		Clear screen and leave line at the top of the screen
+
+
+Keystrokes for Editing Command Lines
+Keystroke	Full Name 		Meaning
+CTRL+D		Delete current		Delete the current character
+Backspace	Delete previous		Delete the previous character
+CTRL+T		Transpose character	Switch positions of the current and previous characters.
+ALT+T		Transpose words		Switch positions of the current and previous words.
+ALT+U		Uppercase word		Change the current word to uppercase.
+ALT+L		Lowercase word		Change the current word to lowercase.
+ALT+C		Capitalize word		Change the current word to an initial capital.
+CTRL+V		Insert special character Add a special character.e.g, to add a Tab character,press Ctrl+V+Tab
+
+
+Keystrokes for Cutting and Pasting Text from within Command Lines
+Keystroke	Full Name		Meaning
+Ctrl+K		Cut end of line		Cut text to the end of the line
+Ctrl+U		Cut beginning of line	Cut text to the beginning of the line
+Ctrl+W		Cut previous word	Cut the word located behind the cursor
+Alt+D		Cut next word		Cut the word following the cursor
+Ctrl+Y		Paste recent text	Paste most recently cut text
+ALT+Y		Paste earlier text	Rotate back to previously cut text and paste it 
+Ctrl+C		Delete whole line	Delete the entire line.
+
+
+Command-line completion
+To save you a few keystrokes, the bash shell offers several different ways of completing
+partially typed values. To attempt to complete a value, type the fi rst few characters and
+press Tab. Here are some of the values you can type partially from a bash shell:
+
+■ Command, alias, or function—If the text you type begins with regular
+characters, the shell tries to complete the text with a command, alias, or
+function name.
+■ Variable—If the text you type begins with a dollar sign ($), the shell completes
+the text with a variable from the current shell.
+■ Username—If the text you type begins with a tilde (~), the shell completes the
+text with a username. As a result, ~username indicates the home directory of the
+named user.
+■ Hostname—If the text you type begins with the at symbol (@), the shell completes
+the text with a hostname taken from the /etc/hosts file.
+
+Command-line recall
+
+After you type a command line, the entire command line is saved in your shell’s
+history list. The list is stored in the current shell until you exit the shell. After that,
+it is written to a history fi le, from which any command can be recalled to run again at
+your next session. After a command is recalled, you can modify the command line, as
+described earlier.
+
+To view your history list, use the history command. Type the command without options
+or followed by a number to list that many of the most recent commands. For example:
+$ history 8
+382 date
+383 ls /usr/bin | sort -a | more
+384 man sort
+385 cd /usr/local/bin
+386 man more
+387 useradd -m /home/chris -u 101 chris
+388 passwd chris
+389 history 8
+
+A number precedes each command line in the list. You can recall one of those commands
+using an exclamation point (!). Keep in mind that when using an exclamation point, the
+command runs blind, without presenting an opportunity to confi rm the command you’re
+referencing. There are several ways to run a command immediately from this list, including
+the following:
+
+■
+!n—Run command number. Replace the n with the number of the command line
+and that line is run. For example, here’s how to repeat the date command shown as
+command number 382 in the preceding history listing:
+$ !382
+dateWed Oct 29 21:30:06 PDT 2014
+■
+!!—Run previous command. Runs the previous command line. Here’s how you
+would immediately run that same date command:
+$ !!
+dateWed Oct 29 21:30:39 PDT 2014
+■
+!?string?—Run command containing string. This runs the most recent command
+that contains a particular string of characters. For example, you can run the date
+command again by just searching for part of that command line as follows:
+$ !?dat?
+dateWed Oct 29 21:32:41 PDT 2014
+
+Key Strokes for Using Command History
+
+Key(s)		Function Name		Description
+Arrow keys	Step			Press the up and down arrow keys to step through each
+					command line in your history list to arrive at the one you want.
+					(Ctrl+P and Ctrl+N do the same functions,respectively.)
+Ctrl+R		Reverse incremental	After you press these keys, you enter a search string to do a
+		search			reverse search.As you type the string, a matching command line
+					appears that you can run or edit.
+Ctrl+S		Forward incremental	This is the same as the preceding function but for forward search.(may not work)
+		search
+Alt+P		Reverse search		After you press these keys, you enter a string to do a reverse search.Type a 
+					string and press Enter to see the most recent command line that includes that
+					string.
+Alt+N		Forward search		This is the same as the preceding function but for forward search.(It may not 
+					work in all instances.)
+
+Another way to work with your history list is to use the fc command. Type fc followed
+by a history line number, and that command line is opened in a text editor (vi by default;
+type :wq to save and exit or :q! to just exit if you are stuck in vi). Make the changes that
+you want. When you exit the editor, the command runs. You can also give a range of line
+numbers (for example, fc 100 105). All the commands open in your text editor, and then
+run one after the other when you exit the editor.
+After you close your shell, the history list is stored in the .bash_history fi le in your
+home directory. Up to 1,000 history commands are stored for you by default.
+
+NOTE
+Some people disable the history feature for the root user by setting the HISTFILE to /dev/null or simply leav-
+ing HISTSIZE blank. This prevents information about the root user’s activities from potentially being exploited. If
+you are an administrative user with root privileges, you may want to consider emptying your fi le upon exiting as well
+for the same reasons. Also, because shell history is stored permanently when the shell exits properly, you can prevent
+storing a shell’s history by killing a shell. For example, to kill a shell with process ID 1234, type kill -9 1234
+from any shell.
+
+Connecting and Expanding Commands
+
+A truly powerful feature of the shell is the capability to redirect the input and output
+of commands to and from other commands and files. To allow commands to be strung
+together, the shell uses metacharacters. A metacharacter is a typed character that has
+special meaning to the shell for connecting commands or requesting expansion.
+Metacharacters include the pipe character (|), ampersand (&), semicolon (;), right paren-
+thesis ( ) ), left parenthesis ( ( ), less than sign (<), and greater than sign (>).
+
+Piping between commands
+
+The pipe (|) metacharacter connects the output from one command to the input of another
+command. This lets you have one command work on some data and then have the next
+command deal with the results. Here is an example of a command line that includes pipes:
+
+$ cat /etc/passwd | sort | less
+
+This command lists the contents of the /etc/passwd fi le and pipes the output to the
+sort command. The sort command takes the usernames that begin each line of the
+/etc/passwd fi le, sorts them alphabetically, and pipes the output to the less command
+(to page through the output).
+
+Pipes are an excellent illustration of how UNIX, the predecessor of Linux, was created
+as an operating system made up of building blocks. A standard practice in UNIX was to
+connect utilities in different ways to get different jobs done.
+To see how the document really appeared, they would use a command such as the following:
+
+$ gunzip < /usr/share/man/man1/grep.1.gz | nroff -c -man | less
+
+In this example, the contents of the grep man page (grep.1.gz) are directed to the
+gunzip command to be unzipped. The output from gunzip is piped to the nroff com-
+mand to format the man page using the manual macro (-man). The output is piped to the
+less command to display the output. Because the fi le being displayed is in plain text, you
+could have substituted any number of options to work with the text before displaying it.
+You could sort the contents, change or delete some of the content, or bring in text from
+other documents. The key is that, instead of all those features being in one program, you
+get results from piping and redirecting input and output between multiple commands.
+
+
+Sequential commands
+
+Sometimes, you may want a sequence of commands to run, with one command completing
+before the next command begins. You can do this by typing several commands on the same
+command line and separating them with semicolons (;):
+$ date ; troff -me verylargedocument | lpr ; date
+In this example, I was formatting a huge document and wanted to know how long it would
+take. The fi rst command (date) showed the date and time before the formatting started.
+The troff command formatted the document and then piped the output to the printer.
+When the formatting was fi nished, the date and time were printed again (so I knew how
+long the troff command took to complete).
+Another useful command to add to the end of a long command line is mail. You could add
+the following to the end of a command line.
+; mail -s "Finished the long command" chris@example.com
+Then, for example, a mail message is sent to the user you choose after the command
+completes.
+
+Background commands
+
+Some commands can take a while to complete. Sometimes, you may not want to tie up your
+shell waiting for a command to fi nish. In those cases, you can have the commands run in
+the background by using the ampersand (&).
+Text formatting commands (such as nroff and troff, described earlier) are examples
+of commands that are often run in the background to format a large document. You also
+might want to create your own shell scripts that run in the background to check con-
+tinuously for certain events to occur, such as the hard disk fi lling up or particular users
+logging in.
+
+The following is an example of a command being run in the background:
+$ troff -me verylargedocument | lpr &
+Don’t close the shell until the process is completed, or that kills the process.
+
+Expanding commands
+
+With command substitution, you can have the output of a command interpreted by the
+shell instead of by the command itself. In this way, you can have the standard output of a
+command become an argument for another command. The two forms of command substitu-
+tion are $(command) and `command` (backticks, not single quotes).
+The command in this case can include options, metacharacters, and arguments. The follow-
+ing is an example of using command substitution:
+$ vi $(find /home | grep xyzzy)
+In this example, the command substitution is done before the vi command is run. First,
+the find command starts at the /home directory and prints out all fi les and directories
+below that point in the fi lesystem. The output is piped to the grep command, which fi lters
+out all fi les except for those that include the string xyzzy in the fi lename. Finally, the vi
+command opens all fi lenames for editing (one at a time) that include xyzzy. (If you run
+this and are not familiar with vi, you can type :q! to exit the fi le.)
+This particular example is useful if you want to edit a fi le for which you know the name but
+not the location. As long as the string is uncommon, you can fi nd and open every instance
+of a fi lename existing beneath a point you choose in the fi lesystem. (In other words, don’t
+use grep from the root fi lesystem or you’ll match and try to edit several thousand files.)
+
+Expanding arithmetic expressions
+
+Sometimes, you want to pass arithmetic results to a command. There are two forms you
+can use to expand an arithmetic expression and pass it to the shell: $[expression] or
+$(expression). The following is an example:
+$ echo "I am $[2015 - 1957] years old."
+I am 58 years old.
+The shell interprets the arithmetic expression fi rst (2015 - 1957) and then passes that
+information to the echo command. The echo command displays the text, with the results
+of the arithmetic (58) inserted.
+Here’s an example of the other form:
+$ echo "There are $(ls | wc -w) files in this directory."
+There are 14 files in this directory.
+This lists the contents of the current directory (ls) and runs the word count command to
+count the number of fi les found (wc -w). The resulting number (14, in this case) is echoed
+back with the rest of the sentence shown.
+
+
+Expanding variables
+Variables that store information within the shell can be expanded using the dollar sign ($)
+metacharacter. When you expand an environment variable on a command line, the value of
+the variable is printed instead of the variable name itself, as follows:
+$ ls -l $BASH
+-rwxr-xr-x 1 root
+root
+1012808 Oct
+8 08:53 /bin/bash
+Using $BASH as an argument to ls -l causes a long listing of the bash command to
+be printed.
+
+Using Shell Variables
+The shell itself stores information that may be useful to the user’s shell session in what are
+called variables. Examples of variables include $SHELL (which identifi es the shell you are
+using), $PS1 (which defi nes your shell prompt), and $MAIL (which identifi es the location of
+your mailbox).
+You can see all variables set for your current shell by typing the set command. A subset
+of your local variables are referred to as environment variables. Environment variables are
+variables that are exported to any new shells opened from the current shell. Type env to
+see environment variables.
+You can type echo $VALUE, where VALUE is replaced by the name of a particular environ-
+ment variable you want to list. And because there are always multiple ways to do anything
+in Linux, you can also type declare to get a list of the current environment variables and
+their values along with a list of shell functions.
+Besides those that you set yourself, system fi les set variables that store things such as
+locations of confi guration fi les, mailboxes, and path directories. They can also store values
+for your shell prompts, the size of your history list, and type of operating system. You
+can refer to the value of any of those variables by preceding it with a dollar sign ($) and
+placing it anywhere on a command line. For example:
+$ echo $USER
+chris
+This command prints the value of the USER variable, which holds your username (chris).
+Substitute any other value for USER to print its value instead.
+
+Common Shell Environment Variables
+Variable		Description
+BASH			This contains the full pathname of the bash command.This is usually /bin/bash.
+BASH_VERSION		This is a number representing the current version of the bash command.
+EUID			This is the effective user ID number of the current user. It is assigned when the
+			shell starts,based on the user's entry in the /etc/passwd file.
+FCEDIT 			If set, this variable indicates the text editor used by the fc command to edit
+			history commands. If this variable isn’t set, the vi command is used.
+HISTFILE 		This is the location of your history fi le. It is typically located at $HOME/.
+			bash_history.
+HISTFILESIZE 		This is the number of history entries that can be stored. After this number is
+			reached, the oldest commands are discarded. The default value is 1000.
+HISTCMD 		This returns the number of the current command in the history list.
+HOME 			This is your home directory. It is your current working directory each time
+			you log in or type the cd command with any options.
+HOSTTYPE 		This is a value that describes the computer architecture on which the Linux
+			system is running. For Intel-compatible PCs, the value is i386, i486, i586,
+			i686, or something like i386-linux. For AMD 64-bit machines, the value is x86_64.
+MAIL 			This is the location of your mailbox fi le. The fi le is typically your username in
+			the /var/spool/mail directory.
+OLDPWD 			This is the directory that was the working directory before you changed to
+			the current working directory.
+OSTYPE 			This name identifi es the current operating system. For Fedora Linux, the
+			OSTYPE value is either linux or linux-gnu, depending on the type of shell
+			you are using. (Bash can run on other operating systems as well.)
+PATH 			This is the colon-separated list of directories used to fi nd commands that
+			you type. The default value for regular users varies for different distribu-
+			tions, but typically includes the following: /bin:/usr/bin:/usr/local/
+			bin:/usr/bin/X11:/usr/X11R6/bin:~/bin. You need to type the full
+			path or a relative path to a command you want to run that is not in your
+			PATH. For the root user, the value also includes /sbin, /usr/sbin, and
+			/usr/local/sbin.
+PPID 			This is the process ID of the command that started the current shell (for
+			example, the Terminal window containing the shell).
+PROMPT_COMMAND 		This can be set to a command name that is run each time before your shell
+			prompt is displayed. Setting PROMPT_COMMAND=date lists the current date/
+			time before the prompt appears.
+PS1 			This sets the value of your shell prompt. There are many items that you can
+			read into your prompt (date, time, username, hostname, and so on).
+			Sometimes a command requires additional prompts, which you can set with
+			the variables PS2, PS3, and so on.
+PWD 			This is the directory that is assigned as your current directory. This value
+			changes each time you change directories using the cd command.
+RANDOM 			Accessing this variable causes a random number to be generated. The
+			number is between 0 and 99999.
+SECONDS 		This is the number of seconds since the time the shell was started.
+SHLVL 			This is the number of shell levels associated with the current shell session.
+			When you log in to the shell, the SHLVL is 1. Each time you start a new bash
+			command (by, for example, using su to become a new user, or by simply
+			typing bash), this number is incremented.
+TMOUT 			This can be set to a number representing the number of seconds the shell
+			can be idle without receiving input. After the number of seconds is
+			reached, the shell exits. This security feature makes it less likely for
+			unattended shells to be accessed by unauthorized people. (This must be
+			set in the login shell for it to actually cause the shell to log out the user.)
+
+Creating and using aliases
+Using the alias command, you can effectively create a shortcut to any command and
+options you want to run later. You can add and list aliases with the alias command.
+Consider the following examples of using alias from a bash shell:
+$ alias p='pwd ; ls –CF'
+$ alias rm='rm -i'
+In the fi rst example, the letter p is assigned to run the command pwd, and then to run ls
+-CF to print the current working directory and list its contents in column form. The
+second example runs the rm command with the -i option each time you type rm. (This is
+an alias that is often set automatically for the root user. Instead of just removing fi les, you
+are prompted for each individual fi le removal. This prevents you from automatically remov-
+ing all the fi les in a directory by mistakenly typing something such as rm *.)
+While you are in the shell, you can check which aliases are set by typing the alias com-
+mand. If you want to remove an alias, type unalias. (Remember that if the alias is set
+in a confi guration fi le, it will be set again when you open another shell.).
+
+Exiting the shell
+To exit the shell when you are fi nished, type exit or press Ctrl+D. If you go to the shell
+from a Terminal window and you are using the original shell from that window, exiting
+causes the Terminal window to close. If you are at a virtual console, the shell exits and
+returns you to a login prompt.
+If you have multiple shells open from the same shell session, exiting a shell simply returns
+you to the shell that launched the current shell. For example, the su command opens a
+shell as a new user. Exiting from that shell simply returns you to the original shell.
+
+Creating Your Shell Environment
+You can tune your shell to help you work more effi ciently. You can set aliases to create
+shortcuts to your favorite command lines and environment variables to store bits of infor-
+mation. By adding those settings to shell confi guration fi les, you can have the settings
+available every time you open a shell.
+
+Confi guring your shell
+Several confi guration files support how your shell behaves. Some of the fi les are executed
+for every user and every shell, whereas others are specific to the user who creates the con-
+fi guration file.
+
+
+Bash Confi guration Files
+(Notice the use of ~ in the fi lenames to indicate that the file is located in each
+user’s home directory.)
+
+File			Description
+
+/etc/profile		This sets up user environment information for every user.It is executed when you first log in.
+			This file provides values for your path, in addition to setting environment variables
+			for such things as the location of your mailbox and the size of your history files.Finally,
+			/etc/profile gathers shell settings from configuration files in the /etc/profile.d directory.
+
+/etc/bashrc		This executes for every uset who runs the bash shell,each time a bash shell is opened. It sets
+			the default prompt and may add one or more aliases.Values in this file can be overridden by
+			information in each user's ~/.bashrc file.
+
+
+~/.bash_profile		This is used by each user to enter information that is specific to his or her use of the shell.
+			It is executed only once, when the user logs in.By default, it sets a few environment variables
+			and executes the user's .bashrc file. This is a good place to add environment variables because
+			once set, they are inherited by future shells.
+
+~/.bashrc		This contains the information that is specific to your bash shells.It is read when you log in and
+			also each time you open a new bash shell.
+			This is the best location to add aliases so that your shell picks them up.\
+
+~/.bash_logout		This executes each time you log out(exit the last bash shell).By default,it simply clears your 
+			screen.
+
+To change the /etc/profile or /etc/bashrc fi les, you must be the root user. Users can
+change the information in the $HOME/.bash_profile, $HOME/.bashrc, and $HOME/.
+bash_logout fi les in their own home directories.
+
+The following sections provide ideas about items to add to your shell confi guration fi les. In
+most cases, you add these values to the .bashrc fi le in your home directory. However, if
+you administer a system, you may want to set some of these values as defaults for all your
+Linux system’s users.
+
+Setting your prompt
+Your prompt consists of a set of characters that appear each time the shell is ready to
+accept a command. The PS1 environment variable sets what the prompt contains and is
+what you interact with most of the time. If your shell requires additional input, it uses the
+values of PS2, PS3, and PS4.
+
+When your Linux system is installed, often a prompt is set to contain more than just a
+dollar sign or pound sign. For example, in Fedora or Red Hat Enterprise Linux, your prompt
+is set to include the following information: your username, your hostname, and the base
+name of your current working directory. That information is surrounded by brackets and
+followed by a dollar sign (for regular users) or a pound sign (for the root user). The follow-
+ing is an example of that prompt:
+[chris@myhost bin]$
+
+If you change directories, the bin name would change to the name of the new directory.
+Likewise, if you were to log in as a different user or to a different host, that information
+would change.
+You can use several special characters (indicated by adding a backslash to a variety of
+letters) to include different information in your prompt. Special characters can be used to
+output your terminal number, the date, and the time, as well as other pieces of informa-tion.
+
+N/B
+If you are setting your prompt temporarily by typing at the shell, you should put the value of PS1 in quotes. For example,
+you could type export PS1="[\t \w]\$ " to see a prompt that looks like this: [20:26:32 /var/spool]$.
+
+Characters to Add Information to bash Prompt
+\! This shows the current command history number. This includes all previous commands stored for your username.
+\# This shows the command number of the current command. This includes only thecommands for the active shell.
+\$ This shows the user prompt ($) or root prompt (#), depending on which user you are.
+\W This shows only the current working directory base name. For example, if the current working directory was /var/spool/mail, 
+   this value simply appears as mail.
+\[ This precedes a sequence of nonprinting characters. This can be used to add a terminal control sequence into the prompt for
+   such things as changing colors, adding blink effects, or making characters bold. (Your terminal determines the exact
+   sequences available.)
+\] This follows a sequence of nonprinting characters.
+\\ This shows a backslash.
+\d This displays the day name, month, and day number of the current date—for example, Sat Jan 23.
+\h This shows the hostname of the computer running the shell.
+\n This causes a newline to occur.
+\nnn This shows the character that relates to the octal number replacing nnn.
+\s This displays the current shell name. For the bash shell, the value would be bash.
+\t This prints the current time in hours, minutes, and seconds—for example, 10:14:39.
+\u This prints your current username.
+\w This displays the full path to the current working directory.
+
+To make a change to your prompt permanent, add the value of PS1 to your .bashrc fi le
+in your home directory (assuming that you are using the bash shell). There may already be
+a PS1 value in that fi le that you can modify. Refer to the Bash Prompt HOWTO (http://
+www.tldp.org/HOWTO/Bash-Prompt-HOWTO) for information on changing colors, com-
+mands, and other features of your bash shell prompt.
+
+Adding environment variables
+You might want to consider adding a few environment variables to your .bashrc fi le.
+These can help make working with the shell more effi cient and effective:
+■ TMOUT—This sets how long the shell can be inactive before bash automatically
+exits. The value is the number of seconds for which the shell has not received
+input. This can be a nice security feature, in case you leave your desk while you are
+still logged in to Linux. To prevent being logged off while you are working, you may
+want to set the value to something like TMOUT=1800 (to allow 30 minutes of idle
+time). You can use any terminal session to close the current shell after a set num-
+ber of seconds—for example, TMOUT=30.
+■ PATH—As described earlier, the PATH variable sets the directories that are
+searched for commands you use. If you often use directories of commands that are
+not in your path, you can permanently add them. To do this, add a PATH variable
+to your .bashrc fi le. For example, to add a directory called /getstuff/bin, add
+the following:
+PATH=$PATH:/getstuff/bin ; export PATH
+This example fi rst reads all the current path directories into the new PATH ($PATH),
+adds the /getstuff/bin directory, and then exports the new PATH.
+■
+WHATEVER—You can create your own environment variables to provide shortcuts in
+your work. Choose any name that is not being used and assign a useful value to it.
+For example, if you do lots of work with fi les in the /work/time/files/info/
+memos directory, you could set the following variable:
+M=/work/time/files/info/memos ; export M
+You could make that your current directory by typing cd $M. You could run a pro-
+gram from that directory called hotdog by typing $M/hotdog. You could edit a fi le
+from there called bun by typing vi $M/bun.
+
+NOTE:
+Some people add the current directory to their PATH by adding a directory identifi ed simply as a dot (.) as follows:
+PATH=.:$PATH ; export PATH
+This enables you to run commands in your current directory before evaluating any other command in the path (which
+people may be used to if they have used DOS). However, the security risk with this procedure is that you could be in a
+directory that contains a command that you don’t intend to run from that directory. For example, a malicious person
+could put an ls command in a directory that, instead of listing the content of your directory, does something devi-
+ous. Because of this, the practice of adding the dot to your path is highly discouraged.
+
+Getting Information about Commands
+
+When you first start using the shell, it can be intimidating. All you see is a prompt. How do
+you know which commands are available, which options they use, or how to use advanced
+features? Fortunately, lots of help is available. Here are some places you can look to supple-
+ment what you learn in this chapter:
+
+Check the PATH. Type echo $PATH. You see a list of the directories containing
+commands that are immediately accessible to you. Listing the contents of those
+directories displays most standard Linux commands. For example:
+$ ls /bin
+
+Use the help command. Some commands are built into the shell, so they do
+not appear in a directory. The help command lists those commands and shows
+options available with each of them. (Type help | less to page through the
+list.) For help with a particular built-in command, type help command, replacing
+command with the name that interests you. The help command works with the
+bash shell only.
+
+Use --help with the command. Many commands include a --help option that
+you can use to get information about how the command is used. For example, if
+you type date --help | less, the output shows not only options, but also time
+formats you can use with the date command. Other commands simply use a –h
+option, like fdisk -h.
+
+Use the info command. The info command is another tool for displaying infor-
+mation about commands from the shell. The info command can move among a
+hierarchy of nodes to fi nd information about commands and other items. Not all
+commands have information available in the info database, but sometimes more
+information can be found there than on a man page
+
+Use the man command. To learn more about a particular command, type man
+command. (Replace command with the command name you want.) A description of
+the command and its options appears on the screen
+
+Manual Page Sections
+Man pages are the most common means of getting information about commands, as well as
+other basic components of a Linux system. Each man page falls into one of the categories
+listed in Table 3.8. As a regular user, you will be most interested in man pages in section 1.
+As a system administrator, you will also be interested in sections 5 and 8, and occasionally
+section 4. Programmers will be interested in section 2 and 3 man pages.
+
+Section
+Number    Section Name     		Description
+1	  User Commands			Commands that can be run from the shell by a regular user
+				        (typically no administrative privilege is needed)
+2	 System Calls			Programming functions used within an application to make calls
+					to the kernel
+3	 C Library Functions		Programming functions that provide interface to specific
+					programming libaries (such as those for certain graphical
+					interfaces or other libraries that operate in user space)
+4	 Device and Special Files	Filesystem nodes that represent hardware devices(such as 
+					terminals or CD drivers) or software devices(such as random
+					number generators)
+5	 File Formats and Convetions	Types of files(such as a graphic or word processing file) or
+					specific configuration files (such as the passwd or group file)
+6	 Games 				Games available on the system
+7	 Miscellaneous			Overviews of topics such as protocols, filenames, character set
+					standards, and o on
+8	 System Administration		Commands that require root or other adminstrative priviledges
+	 Tools and Daemons		to use
+
+Options to the man command enable you to search the man page database or display man
+pages on the screen. Here are some examples of man commands and options:
+
+$ man -k passwd
+...
+passwd			(1)  -update user's authetication tokens
+passwd			(5)  -password file
+$man passwd
+$man 5 passwd
+
+Using the -k option, you can search the name and summary sections of all man pages
+installed on the system. About a dozen man pages include “passwd” in the name or
+description of a command. Let’s say that the two man pages I am interested in are the
+passwd command (in section 1 of the man pages) and the passwd fi le (in section 5) man
+pages. Because just typing man passwd displays the section 1 page, I need to explicitly
+request the section 5 man page if I want to see that instead (man 5 passwd).
+While you are displaying a man page, you can view different parts of the fi le using Page
+Down and Page Up keys (to move a page at a time). Use the Enter key or up and down
+arrows to move a line at a time. Press the forward slash (/) and type a term to search the
+document for that term. Press n to repeat the search forward or N to repeat the search
+backward. To quit the man page, type q.
