@@ -1,1 +1,2 @@
 echo $(date)
+echo '$HOME'
